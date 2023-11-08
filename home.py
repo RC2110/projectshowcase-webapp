@@ -18,15 +18,22 @@ content2="""Below you can find some of the apps I have built in Python.
 Feel free to contact me!"""
 st.info(content2)
 
-data = pd.read_csv("data.csv", sep=';')
+data = pd.read_csv("data1.csv", sep=';')
 
-col3, col4 = st.columns(2)
+col3, dupl_col, col4 = st.columns([1.5,0.5,1.5])
 
 with col3:
     for index, rows in data[:10].iterrows():
         title=rows['title']
         st.subheader(title)
+        st.image("Images/" + rows['image'])
+        st.write(rows['description'])
+        st.write(f"[source code]({rows['url']})")
+
 
 with col4:
     for index, rows in data[10:].iterrows():
         st.subheader(rows['title'])
+        st.image("Images/" + rows['image'])
+        st.write(rows['description'])
+        st.write(f"[source code]({rows['url']})")
